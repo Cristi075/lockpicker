@@ -1,0 +1,47 @@
+- hosts: "{{ host }}"
+  become: yes
+  tasks:
+    - debug: msg='WARNING! This will create users with weak passwords on the target system!'
+    - debug: msg='Target host = {{ansible_fqdn}}'
+    # Create user - identical password
+    - name: Create user 1 - alice/alice
+      user:
+        name: alice
+        password: $6$KQHo1YzE66FMsRLS$kBgAKa6TiIEye68/gLDRJyhin.P5ZWQ5em3PNdoyqyKZTq8.ai1gXMqWlQs/FajN1oJp.yOt6s/6.KyJiK2xJ/
+        state: present
+    # Create user - name + 1 digit
+    - name: Create user 2 - bob/bob5
+      user:
+        name: bob
+        password: $6$C8xYi4faK2TmfYz1$Ts.lr5M69QbHxdlY4e4ydOgY9Yg2Bx7TNAZ64Y7PpyPAkHdSSOc50mYQwAz2ZP2UgNKby2Z.LjsN5TuuV4grV/
+        state: present
+    # Create user - name + 2 digits
+    - name: Create user 3 - carol/carol04
+      user:
+        name: carol
+        password: $6$.cn4i4avVFz7GUWe$q1YV/gBy1iXNJfwxP8Vt1u.pp7uaI.uQO/B6af9AL6Nzg42oZoxSg6AlLhelQGYQzw2oiA3nYHZwcXFuJ2xet1
+        state: present
+    - name: Create user 4 - frank/frank89
+      user:
+        name: frank
+        password: $6$Dqs0poIub5qSNwXI$yF.kRc8V9QRjEvOjXsWCWCv0Y5qLktHcLLQ2dBaoPuB7L1NhjQIP0fTqqhEg2tcr6LZABntvWV8r1bEk5jkRJ.
+        state: present
+    # Create user - name + 3 digits
+    - name: Create user 5 - sam/sam123
+      user:
+        name: sam
+        password: $6$RWOXzYQ9cORQE/eP$bmu9K.3TiOGDoCaFm/9B7j49isElGPFEuQ5XJMwCg..gl1.JljmQFZHHiazG0moFXGK1EYlygL4yXYo0cc1B20
+        state: present
+    # Create user - rockyou.txt password
+    - name: Create user 6 - erica/meatball
+      user:
+        name: erica
+        password: $6$WPac4AaO5nh30uMd$KJ/uuG8AclWHiBvortGAFJj536.kd28rMvwEZqRElhp3daWkOES44haidU96r5d8XZgQQHOs.MCcRBenwo5.4.
+        state: present
+    # Create user - rockyou.txt password
+    - name: Create user 7 - paul/ilovemath
+      user:
+        name: paul
+        password: $6$HL1mag9l/3.Adcze$CMwy/EjWLo.REiDKpf5BntRotZUNsNvFJCZLVPD5P7WyD24JY64.ByQEudquF03TkC5j5KRWUDKBqVfIIlexw1
+        state: present
+  
